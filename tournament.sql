@@ -11,7 +11,9 @@ create table players (id serial primary key, name varchar(100) not null);
 create view registeredPlayers as 
 select count(*) as registeredPlayers from players;
 
-create table results (winner_id integer, loser_id integer);
+create table results (winner_id integer references players(id), 
+loser_id integer references players(id),
+primary key (winner_id, loser_id));
 
 create view playerStandings as 
 select p.id, p.name, coalesce(w.wins, 0) as wins, coalesce(w.wins, 0) + coalesce(l.losses, 0) as matches, 
