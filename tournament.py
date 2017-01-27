@@ -13,7 +13,7 @@ def deleteMatches():
     """Remove all the match records from the database."""
     conn = connect()
     cursor = conn.cursor()
-    cursor.execute('truncate table results;')
+    cursor.execute('truncate table results cascade;')
     conn.commit()
     conn.close()
 
@@ -21,7 +21,7 @@ def deletePlayers():
     """Remove all the player records from the database."""
     conn = connect()
     cursor = conn.cursor()
-    cursor.execute('truncate table players;')
+    cursor.execute('truncate table players cascade;')
     conn.commit()
     conn.close()
 
